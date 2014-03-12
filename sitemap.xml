@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://jeffreylyg.github.io/blog/2014/03/12/my-first-octopress-blog/</loc>
+        <lastmod>2014-03-12T14:37:20+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://jeffreylyg.github.io/blog/archives/</loc>
-        <lastmod>2014-03-12T13:58:44+08:00</lastmod>
+        <lastmod>2014-03-12T14:37:20+08:00</lastmod>
     </url>
     <url>
         <loc>http://jeffreylyg.github.io/</loc>
-        <lastmod>2014-03-12T13:58:44+08:00</lastmod>
+        <lastmod>2014-03-12T14:37:20+08:00</lastmod>
     </url>
     <url>
         <loc>http://jeffreylyg.github.io/robots.txt</loc>
