@@ -4,7 +4,7 @@
 
 url: http://jeffreylyg.github.io
 title: Stay foolish, stay hungry.
-subtitle: A blogging framework for hackers.
+subtitle: Keen to mobile development, Obsessed with mobile design and user experience.
 author: Jeffrey Lee
 simple_search: https://www.google.com/search
 description: You know ultimately it comes down to taste, it comes down to trying to expose yourself to the best things that humans have done, and try to bring these things into what you are doing.-- Steve Jobs
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: jeffreylyg@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -70,7 +70,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user: jeffreylyg
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: false
@@ -98,4 +98,4 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_user: 100002218806429
-facebook_like: true
+facebook_like: false
