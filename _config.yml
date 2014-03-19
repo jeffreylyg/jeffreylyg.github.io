@@ -7,7 +7,7 @@ title: Stay foolish, stay hungry.
 subtitle: Keen to mobile development, Obsessed with mobile design and user experience.
 author: Jeffrey Lee
 simple_search: https://www.google.com/search
-description: You know ultimately it comes down to taste, it comes down to trying to expose yourself to the best things that humans have done, and try to bring these things into what you are doing.-- Steve Jobs
+description: You know ultimately it comes down to taste, it comes down to trying to expose yourself to the best things that humans have done, and try to bring these things into what you are doing. -- Steve Jobs
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -99,3 +99,12 @@ google_analytics_tracking_id:
 # Facebook Like
 facebook_user: 100002218806429
 facebook_like: false
+
+# StackOverflow
+stackoverflow_user: jeffreylyg@gmail.com
+
+# LinkedIn
+linkedin_user: 
+
+#Weibo
+weibo_user: 1917434091
