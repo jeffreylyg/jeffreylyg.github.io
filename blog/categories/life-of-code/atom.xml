@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Life Of Code | Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/blog/categories/life-of-code/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-03-24T04:44:47+08:00</updated>
+  <updated>2014-03-24T04:48:39+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-03-24T02:29:32+08:00</updated>
     <id>http://jeffreylyg.github.io/blog/2014/03/24/clang-error-wunused-command-line-argument-hard-error-in-future</id>
     <content type="html"><![CDATA[<p>在公司的电脑上用<strong>Octopress</strong>搭好个人Blog后进行了一些初步设置后因为工作太忙然后搁那儿就没动了，等周末时间空出来后准备用自己的Mac Air重新搭建和配置一下Octopress以便以后都用自己的电脑在闲暇的时间来写写博客。在搭建时执行 <code>bundle install</code> 命令时总是报如下的错误：</p>
+
+<!--more-->
+
 
 <pre><code>Gem::Installer::ExtensionBuildError: ERROR: Failed to   build gem native extension.
 
@@ -115,9 +118,6 @@ rbenv local 2.1.1
 rbenv rehash
 </code>
 按照第二种方法升级ruby后在Octopress目录下执行<code>bundle install</code>命令，问题解决，然后就可以用<strong>rake</strong>命令进行发布，预览等一系列操作了。</p>
-
-<!--more-->
-
 ]]></content>
   </entry>
   

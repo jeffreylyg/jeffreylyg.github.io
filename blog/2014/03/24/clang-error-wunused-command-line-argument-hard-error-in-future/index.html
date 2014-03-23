@@ -108,6 +108,9 @@
 	<h1 class="title" itemprop="name">Clang Error: -Wunused-command-line-argument-hard-error-in-future</h1>
 	<div class="entry-content" itemprop="articleBody"><p>在公司的电脑上用<strong>Octopress</strong>搭好个人Blog后进行了一些初步设置后因为工作太忙然后搁那儿就没动了，等周末时间空出来后准备用自己的Mac Air重新搭建和配置一下Octopress以便以后都用自己的电脑在闲暇的时间来写写博客。在搭建时执行 <code>bundle install</code> 命令时总是报如下的错误：</p>
 
+<!--more-->
+
+
 <pre><code>Gem::Installer::ExtensionBuildError: ERROR: Failed to   build gem native extension.
 
 /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb --with-cflags=-w
@@ -212,9 +215,6 @@ Requirements installation failed with status: 1.
 
 
 <p>按照第二种方法升级ruby后在Octopress目录下执行<code>bundle install</code>命令，问题解决，然后就可以用<strong>rake</strong>命令进行发布，预览等一系列操作了。</p>
-
-<!--more-->
-
 </div>
 
 </article>
