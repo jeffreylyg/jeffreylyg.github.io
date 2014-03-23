@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Stay foolish, stay hungry.]]></title>
-  <link href="http://jeffreylyg.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Life Of Code | Stay foolish, stay hungry.]]></title>
+  <link href="http://jeffreylyg.github.io/blog/categories/life-of-code/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
   <updated>2014-03-24T04:44:47+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
@@ -55,13 +55,11 @@ Make sure that `gem install RedCloth -v '4.2.9'` succeeds before bundling.
 </ul>
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install 
-</span><span class='line'>sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install Gemmodule </span></code></pre></td></tr></table></div></figure>
-
-
-<p>然而这种方法是一种临时性的解决办法，想要永久性的解决这个问题就要用第二种方法。</p>
+<p><code>
+sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install
+sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install Gemmodule
+</code>
+然而这种方法是一种临时性的解决办法，想要永久性的解决这个问题就要用第二种方法。</p>
 
 <ul>
 <li>升级ruby的版本，升级到解决了这个问题的版本就行，貌似是2.0.0-p451，大于等于这个版本的都行，我下面的操作就是升级到了2.1.1版本。</li>
@@ -99,43 +97,27 @@ Requirements installation failed with status: 1.
 
 <p>首先用如下命令安装<strong>Homebrew</strong>：</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"</span></code></pre></td></tr></table></div></figure>
+<p><code>
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+</code>
+然后安装<strong>rbenv</strong>：</p>
 
+<p><code>
+brew update
+brew install rbenv
+brew install ruby-build
+</code>
+最后安装<strong>ruby</strong>：</p>
 
-<p>然后安装<strong>rbenv</strong>：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>brew update
-</span><span class='line'>brew install rbenv
-</span><span class='line'>brew install ruby-build</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后安装<strong>ruby</strong>：</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rbenv install 2.1.1
-</span><span class='line'>rbenv local 2.1.1
-</span><span class='line'>rbenv rehash</span></code></pre></td></tr></table></div></figure>
-
-
-<p>按照第二种方法升级ruby后在Octopress目录下执行<code>bundle install</code>命令，问题解决，然后就可以用<strong>rake</strong>命令进行发布，预览等一系列操作了。</p>
+<p><code>
+rbenv install 2.1.1
+rbenv local 2.1.1
+rbenv rehash
+</code>
+按照第二种方法升级ruby后在Octopress目录下执行<code>bundle install</code>命令，问题解决，然后就可以用<strong>rake</strong>命令进行发布，预览等一系列操作了。</p>
 
 <!--more-->
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My First Octopress Blog]]></title>
-    <link href="http://jeffreylyg.github.io/blog/2014/03/12/my-first-octopress-blog/"/>
-    <updated>2014-03-12T14:37:20+08:00</updated>
-    <id>http://jeffreylyg.github.io/blog/2014/03/12/my-first-octopress-blog</id>
-    <content type="html"><![CDATA[<p>This is my first Octopress blog.</p>
 ]]></content>
   </entry>
   
