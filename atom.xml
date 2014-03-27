@@ -4,7 +4,7 @@
   <title><![CDATA[Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-03-25T22:48:18+08:00</updated>
+  <updated>2014-03-28T03:15:16+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -135,7 +135,22 @@ Requirements installation failed with status: 1.
     <link href="http://jeffreylyg.github.io/blog/2014/03/12/my-first-octopress-blog/"/>
     <updated>2014-03-12T14:37:20+08:00</updated>
     <id>http://jeffreylyg.github.io/blog/2014/03/12/my-first-octopress-blog</id>
-    <content type="html"><![CDATA[<p>This is my first Octopress blog.</p>
+    <content type="html"><![CDATA[<p>很久之前就想搭一个个人<strong>Blog</strong>了，但一直苦于找不到一个合适的<strong>Blog</strong>平台。之前搞ACM的时候在CSDN上写过一些题解，主要做模板和记录的作用，写过几篇后就不了了之了。然后体验过国外很火的轻博客<a href="https://www.tumblr.com/"><strong>Tumblr</strong></a>以及国内的<a href="http://www.diandian.com/"><strong>点点</strong></a>等，这些平台都不能完全的私人定制，感觉甚是不爽。说到这儿可能会有人问为什么不去用<a href="http://wordpress.com/"><strong>WordPress</strong></a>，其实之前是有试着用<a href="http://wordpress.com/"><strong>WordPress</strong></a>去搭的，但感觉很是麻烦，先不说部署时的学习曲线，还要自己去找服务器，国内的免费服务器支持的不是很好，<strong>新浪云</strong>有支持，但免费的还是不能完全的私人定制，花钱租服务器觉得不划算，觉得还没有到花钱的地步，不是自己舍不得这笔钱，主要是认为自己才刚开始，博客一时半会儿不会到拥有大量读者的地步而且主要是自娱自乐。还有一个原因当时真得没有时间去折腾这个。所以这件事也就搁置了好久，一直到现在。</p>
+
+<!--more-->
+
+
+<p>最近偶然在Google问题浏览他人Blog的时候发现了<a href="http://octopress.org/"><strong>Octopress</strong></a>的存在，于是马上去它的官网查了查，瞬间被它的一句话所吸引：</p>
+
+<blockquote><p>A blogging framework for hackers.</p></blockquote>
+
+<p>于是大概看了一下它是如何部署的，原来是用<code>ruby</code>脚本帮你封装了生成静态页面以及git的一系列操作，虽然从来没用过<code>ruby</code>，但对git还是蛮熟悉的，而且它可以部署在<a href="http://pages.github.com/"><strong>Github Page</strong></a>上，所以服务器这一项完全免费还支持custom domain，于是立马开始了对<code>Octopress</code>的部署（网上有大量的Octopress的部署教程，这里不赘述了，请大家自行Google）。博文支持当下很流行的<code>Markdown</code>语法，<code>Markdown</code>确实强大而且<code>Markdown</code>还是蛮容易上手的，这里推荐一个Mac OS上很不错的Markdown编辑器<a href="http://mouapp.com/"><strong>Mou</strong></a>:</p>
+
+<p><img src="http://mouapp.com/images/Mou_Screenshot_1.png" alt="Mou preview" /></p>
+
+<p>随后发现了一款Octopress上非常不错的主题，第一眼看到它就喜欢上它的高大上了，这款主题叫<a href="http://shashankmehta.in/archive/2012/greyshade.html"><strong>Greyshade</strong></a>, 也就是本人现在正在用的这款主题。引入这款主题的时候会出现一个问题，那就是如果你引入了第三方评论系统<a href="http://disqus.com/"><strong>Disqus</strong></a>，那么引入这款主题后<a href="http://disqus.com/"><strong>Disqus</strong></a>后就看不见了，在网上Google了好久终于在这篇文章<a href="http://bryanone.com/blog/2014/03/01/problem-with-greyshade/">http://bryanone.com/blog/2014/03/01/problem-with-greyshade/</a>里找到了原因并有解决方案，很感谢这位博主。</p>
+
+<p>最后，还是好基友说的那句话，搭一个Blog平台容易，但坚持写Blog不是一件容易的事。所以，总之，加油吧，在这里记录点什么。</p>
 ]]></content>
   </entry>
   
