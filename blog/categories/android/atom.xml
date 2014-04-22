@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | Stay foolish, stay hungry.]]></title>
+  <link href="http://jeffreylyg.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://jeffreylyg.github.io/"/>
+  <updated>2014-04-23T01:37:13+08:00</updated>
+  <id>http://jeffreylyg.github.io/</id>
+  <author>
+    <name><![CDATA[Jeffrey Lee]]></name>
+    <email><![CDATA[jeffreylyg@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Genymotion, the fastest Android emulator for app testing and presentation]]></title>
+    <link href="http://jeffreylyg.github.io/blog/2014/04/22/genymotion/"/>
+    <updated>2014-04-22T23:33:44+08:00</updated>
+    <id>http://jeffreylyg.github.io/blog/2014/04/22/genymotion</id>
+    <content type="html"><![CDATA[<p>各位做Android开发的Developers可能早已受够了Google自带的模拟器，它确实又慢又卡，所以大多数Developers都是用真机调试，然而真机自然也有它的不方便之处，那就是你需要一台测试真机，这个一般公司都能给你提供，最主要的是它还是比较慢，做过iOS的人都喜欢用模拟器比真机多一点，除非一些在模拟器上调试不了的功能，因为iOS的模拟器比真机还快，还不需要安装一系列必要的Profile，之前做iOS的时候无不感叹iOS模拟器的方便，想着Android什么时候也能有这样一款模拟器就好了。今天偶然发现了这款叫<a href="http://www.genymotion.com/"><strong>Genymotion</strong></a>的模拟器，支持跨平台，亲测后只能用一句话来形容：“它真的太棒了”！启动速度和运行速度和自带的完全不在一个数量级上，是自带的几十倍，堪比iOS模拟器。强烈推荐做Android开发的同学们以后都用这款模拟器。也许发现的有点晚，但总比一直没有发现好吧，简单Google了一下发现网上配置教程也比较多，其实也不需要什么教程，按照官网上的做就行了，还是比较容易上手的，下面简单的来说一下安装过程和安装好后遇到的一些问题吧。</p>
+
+<!--more-->
+
+
+<p><img src="/images/2014-4-22/1.png"></p>
+
+<h2>安装过程</h2>
+
+<ol>
+<li><p>首先安装VirtualBox，所以它能在Windows，Mac和Linux上都可以运行，这也是它比本地模拟器更快的原因。</p></li>
+<li><p>从官网下载后安装然后注册一个账号即可，点击运行如下图所示：<img src="/images/2014-4-22/2.png"> 怎么样，界面是不是很漂亮？</p></li>
+<li><p>用之前注册好的账号登录后选择一款手机型号或者自定义也行，例如我选择了我最喜欢的Nexus 5，然后就从服务器上去下载相应的虚拟机了，如下图所示：<img src="/images/2014-4-22/3.png"></p></li>
+</ol>
+
+
+<br />
+
+
+<p>IntelliJ、Android Studio和Eclipse（不过Eclipse应该大多数人都不用了吧，和IDEA系列比简直太弱了啊）都有相应的插件，在官网上都可以下到。IDEA系列安装插件如下图所示，在Setting的Plugins里点击Install  plugin from disk找到所在位置安装就行。<img src="/images/2014-4-22/4.png"></p>
+
+<h2>遇到的问题</h2>
+
+<p>这是网上很多配置教程没有的，也是我自己亲自遇到的问题。编译项目后在<strong>Genymotion</strong>模拟器上运行时发现报<code>INSTALL_FAILED_CPU_ABI_INCOMPATIBLE</code>的错误，这是因为<strong>Genymotion</strong>只支持x86结构，不支持ARM，如果你的项目是必须运行在ARM上的话，那就必须安装<a href="http://s5.filetrip.net/dl.php?fn=L3AvMjgzMjIvMTk1MDQyLUdlbnltb3Rpb24tQVJNLVRyYW5zbGF0aW9uX3YxLjEuemlw&amp;dn=R2VueW1vdGlvbi1BUk0tVHJhbnNsYXRpb25fdjEuMS56aXA=&amp;fs=OTM5MDI1MA==">Genymotion-ARM-Translation_v1.1.zip</a>，点击链接下载后在<strong>Genymotion</strong>模拟器的HomeScreen上把这个zip包拖拽上去就安装好了。</p>
+
+<p>怎么样，看完了整个过程是不是觉得很简单？那还等什么呢，赶紧安装吧，体验<strong>Genymotion</strong>带来的快速和便捷吧。</p>
+]]></content>
+  </entry>
+  
+</feed>
