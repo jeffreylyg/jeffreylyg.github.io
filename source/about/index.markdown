@@ -8,4 +8,7 @@ footer: true
 ---
 
 ##This is me
-Keen to mobile development, Obsessed with mobile design and user experience.
+* Developer living in Beijing.
+* Likes coding, hacking devices, travelling, movies, music, sports.
+* Programs mainly in Java and Objective-C.
+* Keen to mobile development, Obsessed with mobile design and user experience.
