@@ -4,7 +4,7 @@
   <title><![CDATA[Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-05-19T02:44:33+08:00</updated>
+  <updated>2014-05-19T02:50:37+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -38,6 +38,9 @@
 <p>当微优化一个Android应用程序时面临最棘手的问题之一就是你的应用程序肯定要运行在多种类型的硬件上。不同版本的虚拟机运行在不同的处理器上的运行速度也是不同的。甚至不是一般的情况例如简单的说“X设备比Y设备快（慢）F倍”以及从一个设备上得到的结果扩展到其它设备上。特别是在模拟器上的测试几乎不会告诉你什么关于在任何设备上的性能。在带与不带JIT的设备之间也有巨大的差异：对带JIT设备来说是最好的代码但在不带JIT的设备上不总是最好的。</p>
 
 <p>为确保你的应用在各种各样的设备上表现良好，请确保你的各级代码是高效的并致力优化应用的性能。</p>
+
+<!--more-->
+
 
 <h3>避免创建不必要的对象</h3>
 
