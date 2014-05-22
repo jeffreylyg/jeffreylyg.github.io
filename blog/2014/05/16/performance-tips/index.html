@@ -376,7 +376,7 @@
 
 <p>本文档提出的每项主张都有一个基准支持。这些基准的资源都可以在<a href="code.google.com%20%22dalvik%22%20project">code.google.com &ldquo;dalvik&rdquo; project</a>中找到。</p>
 
-<p>这些基准是用Caliper microbenchmarking Java框架建立的。很难得到正确的微基准，所以Caliper用自己的方式为你做这项很艰难的事情，甚至检测出一些你没有测量你认为你在测量的东西。(因为，比如说虚拟机已经成功地优化了所有的代码了。)我们强烈建议你有Caliper来运行你自己的微基准。</p>
+<p>这些基准是用Caliper microbenchmarking Java框架建立的。得到正确的微基准是很难的，所以Caliper用自己的方式为你做这项很艰难的事情，甚至检测出一些你没有测量你认为你在测量的东西。(因为，比如说虚拟机已经成功地优化了所有的代码了。)我们强烈建议你用Caliper来运行你自己的微基准。</p>
 
 <p>你可能发现<code>TraceView</code>对分析很有用，但要认识到它目前是禁用JIT的，可能导致由JIT优化代码来的时间被弄错这一点很重要。尤其重要的是在通过TraceView数据的建议作出改变之后要确保产生的代码在没有TraceView时运行确实运行的更快。</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-05-19T02:50:37+08:00</updated>
+  <updated>2014-05-22T14:11:09+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -12,6 +12,263 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tasks and Back Stack]]></title>
+    <link href="http://jeffreylyg.github.io/blog/2014/05/19/tasks-and-back-stack/"/>
+    <updated>2014-05-19T12:27:49+08:00</updated>
+    <id>http://jeffreylyg.github.io/blog/2014/05/19/tasks-and-back-stack</id>
+    <content type="html"><![CDATA[<blockquote><p>注：此为毕业设计中学院要求的翻译与自己所做毕设相关且不少于2万字符英文原始资料的任务，由于自己毕设做的是Android方面的开发，所以决定翻译一下Android官方文档中Training和API Guides中的部分内容。由于水平有限，如有错误，望理解。</p></blockquote>
+
+<h2><a href="http://developer.android.com/guide/components/tasks-and-back-stack.html">原文链接</a></h2>
+
+<br/>
+
+
+<p>一个应用程序通常包含多个<a href="http://developer.android.com/guide/components/activities.html">活动</a>。每个活动应该围绕一个用户可以执行和开始其它的活动特定的动作来设计。例如，电子邮件应用程序可能有一个展示新邮件的列表的活动。当用户选择一封邮件时，一个新的活动被打开来查看这封邮件。</p>
+
+<!--more-->
+
+
+<p>一个活动甚至能启动设备上其它应用程序中存在的活动。例如，如果你的应用程序想要发送一封邮件，你可以定义一个意图来执行“发送”任务并包含一些数据，例如邮件地址和消息。另一个应用程序的活动声明自己处理这种意图然后打开邮件。在这种情况下，意图是发送一封邮件，所以邮件应用程序的 &ldquo;compose&rdquo; 活动启动(如果有多个活动支持相同的意图)然后系统让用户选择使用哪一个。当邮件被发送出后，你的活动恢复并且似乎邮件的活动看起来是你的应用程序的一部分。尽管这些活动可能来自不同的应用程序，Android 通过保持两个活动在同一任务中维护了这种无缝的用户体验。</p>
+
+<p>任务是当用户执行某项作业时和用户交互的活动的集合。这些活动以被打开的顺序安排在一个栈(“回退栈”)中。</p>
+
+<p>设备的主屏幕是大多数任务的起点。当用户按下应用启动器中的图标(或主屏幕上的快捷方式)时，该应用程序的任务来到前台。如果应用程序不存在任务，然后一个新的任务会被创建并且那个应用程序的"主"活动打开并作为栈中的根活动。</p>
+
+<p>当当前的活动启动另一个活动时，新的活动被压入堆栈的顶部并获取焦点。前一个活动保持在栈中，但被停止了。当一个活动停止时，系统保留其用户接口的当前状态。当用户按下返回按钮时，当前的活动从栈顶弹出(这个活动就被销毁了)并且前一个活动恢复(其之前的UI状态恢复)。栈中的活动从来没有重新排列，仅仅是从栈中压栈和出栈——当被当前的活动启动时压入栈和当用户用后退按钮离开它时弹出栈。因此，回退栈是作为一个“后进先出”的对象结构操作着。图 1 用展示了活动和当前回退栈在每个时间点的过程的时间线可视化了这种行为。</p>
+
+<p><img src="/images/2014-5-19/1.png" title="图 1" ></p>
+
+<p>图1：表示了任务中每一个新的活动是怎样在回退栈中增加了一个项目。当用户按下返回按钮时，当前的活动被销毁，前一个活动恢复。</p>
+
+<p>如果用户继续按返回，然后再堆栈中的每个活动都弹出来显示前一个，直到用户返回到主屏幕(或者任何任务开始时正在运行的活动)。当所有的活动从堆栈中移除后，这个任务就不再存在。</p>
+
+<p><img class="right" src="/images/2014-5-19/2.png" title="图 2" >
+任务是一个当用户开始新任务或通过 <em>Home</em> 按钮去到主屏幕时可以移动到后台的内聚单位。当在后台时，堆栈中所有的活动被停止，但是回退栈的任务保持不变——任务仅仅是失去了焦点当另一个任务替换了它时，如图 2 所示。再一个任务可以返回到“前台”使用户可以在它们停止的地方获得它们。假设，例如，当前的任务(A任务)在它的堆栈里有三个活动——两个在当前这个活动之下。用户按了主 按钮，然后从应用启动器里启动了一个新的任务。当主屏幕出现时，A 任务进入后台。当新的应用程序启动时，系统为那个应用程序启动了一个带有自己的活动堆栈的任务(B任务)。与应用程序交互后，用户再次返回主页并选择最初启动的 A 任务的应用程序。现在 A 任务来到了前台——栈中所有的三个活动完好并且栈顶的活动恢复。此时，用户还可以通过返回主页选择启动了那个任务的应用程序图标(或通过从最近使用程序屏幕选择那个应用程序的任务)切回到 B 任务。这是一个 Android 上多任务的例子。</p>
+
+<blockquote><p>注：多个任务在后台只能保留一次。然而，如果用户同一时间运行多个后台任务，系统可能会为了恢复内存开始销毁后台活动，导致活动状态丢失。详情请参见 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#ActivityState">Activity state</a> 部分。</p></blockquote>
+
+<p><img class="right" src="/images/2014-5-19/3.png" title="图 3" >
+因为在回退栈中的活动永远不会重新排列，如果你的应用程序允许用户从多个活动启动特定的活动，那么一个新的活动实例会被创建并且压入栈中(而不是把这个活动之前的任何实例拿到栈顶来)。因此，在你的应用程序中一个活动可能会被多次实例化(即使来自不同的任务)，如图 3 所示。因此，如果用户使用后退按钮向后导航，活动的每个实例(和每个的UI状态)会按它们被打开的顺序显示。然而，如果你不想一个活动被实例化多次你可以改变这种行为。怎么做在接下来关于 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#ManagingTasks">Managing Tasks</a> 的章节中会讨论。</p>
+
+<p>活动和任务的默认行为的总结：</p>
+
+<ul>
+<li><p>当活动 A 启动活动 B 时，活动 A 被停止，但系统会保留它的状态(例如滚动条的位置和输入到表单中的文字)。如果用户在活动 B 中按了后退按钮，活动 A 和它被保留的状态一起恢复。</p></li>
+<li><p>当用户按下主按钮离开任务时，当前的活动被停止并且它的任务进入后台。系统保留任务中每个活动的状态。如果用户之后通过选择启动图标开始那个任务恢复任务，这个任务会进入前台并且恢复在栈顶的那个活动。</p></li>
+<li><p>如果用户按了返回按钮，当前的活动从栈顶弹出并且销毁。栈里前一个活动被恢复。当一个活动被销毁时，系统不会保留活动的状态。</p></li>
+<li><p>活动可以被实例化多次，甚至从其它任务上。</p></li>
+</ul>
+
+
+<blockquote><p>设计导航</p>
+
+<p>欲了解更多有关应用程序导航在 Android 上是如何工作的，请阅读 Android 设计<a href="http://developer.android.com/design/patterns/navigation.html">导航</a>指导。</p></blockquote>
+
+<h2>保存活动状态</h2>
+
+<p>正如上面讨论的，系统的默认行为会保存一个活动的状态当它停止时。这样，当用户导航返回到前一个活动时，它的用户界面展示的是它消失时的样子。然而，你能——并且也应该——使用回调方法主动保留活动的状态，以防活动被销毁后必须重新创建。</p>
+
+<p>当系统停止你的其中一个活动时(例如当一个新的活动启动或任务进入了后台)，系统如果为了恢复系统内存也许会完全地销毁那个活动。当这种情况发生时，活动的状态信息也就丢失了。如果发生了这种情况，系统仍然知道这个活动在回退栈中有一个位置，但是当这个活动被拿到栈顶时系统必须重新创建它(而不是恢复它)。为了避免丢失用户的工作，你应该在活动里通过实现 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle">onSaveInstanceState()</a>) 回调方法主动保留用户的工作。</p>
+
+<p>有关更多如何保存活动状态的信息，请参见 <a href="http://developer.android.com/guide/components/activities.html#SavingActivityState">Activities</a> 文档。</p>
+
+<h2>任务管理</h2>
+
+<p>如上所述，Android 通过将所有的活动逐次地放进同样的任务中和一个“先进先出”的堆栈中的方式来管理任务和回退栈——这对大多数应用程序有效并且你不必担心你的活动和任务是怎么关联的以及它们在回退栈中是怎么存在的。然而，你也许会决定要中断正常的行为。也许你想要应用程序的活动当它启动的时候是开始一个新的任务(而不是被放置在当前的任务内)。或者，当你开始一个新的活动，你想要将已经存在的实例拿到前面来(而不是在回退栈的顶部创建一个新的实例)。或者，你想要你的回退栈当用户离开任务时除了根活动外清除所有的活动。</p>
+
+<p>你可以通过 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> manifest 元素的属性和传递给 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a> 的意图的标志做这些事情和更多这样的事情。</p>
+
+<p>在这方面，你可以使用的主要的 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 属性如下：</p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#aff">taskAffinity</a></p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#lmode">launchMode</a></p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#reparent">allowTaskReparenting</a></p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#clear">clearTaskOnLaunch</a></p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#always">alwaysRetainTaskState</a></p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#finish">finishOnTaskLaunch</a></p>
+
+<p>和你可以使用的主要的意图标志如下：</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP">FLAG_ACTIVITY_CLEAR_TOP</a></p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</a></p>
+
+<p>在接下来的章节里，你将会看到如何使用这些清单属性和意图标志来定义活动和任务是如何相关的以及活动在回退栈中是如何表现的。</p>
+
+<blockquote><p>注意：大多数应用程序不应该打断活动和任务的默认行为。如果你确定有必要修改活动的默认行为，在启动和用返回按钮从其它的活动和任务中导航返回时谨慎使用并且确保测试活动的可用性。确保测试导航行为可能与用户预期的行为发生生冲突的情况。</p></blockquote>
+
+<h3>定义启动模式</h3>
+
+<p>启动模式允许你定义一个活动的新实例如何与当前任务相关联。你可以通过两种方式定义不同的启动模式：</p>
+
+<p><a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#ManifestForTasks">使用清单文件</a></p>
+
+<p>当你在清单文件中声明一个活动时，你可以当活动启动的时候指定活动如何与任务相关联。</p>
+
+<p><a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#IntentFlagsForTasks">使用意图标志</a></p>
+
+<p>当你调用 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a> 时，你可以在<a href="http://developer.android.com/reference/android/content/Intent.html">意图</a>里包含一个声明了新的活动如何(或是否)与当前的任务相关联的标志。</p>
+
+<p>因此，如果活动 A 启动活动 B， 活动 B 可以在其清单定义应该如何与当前任务相关联(如果有的话)和活动 A 还可以要求活动 B 应该如何与当前任务相关联。如果这两个活动都定义了活动 B 应该如何与任务相关联，那么活动 A 的请求(如在意图里定义的)高于活动 B 的请求(如在清单中定义的)。</p>
+
+<blockquote><p>注：一些适用于清单文件的启动模式并不是适用于意图标志，同样，一些适用于意图标志的启动模式也不适用于清单文件。</p></blockquote>
+
+<h4>使用清单文件</h4>
+
+<p>当在清单文件声明活动时，你可以用 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 元素的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#lmode">启动模式</a>属性指定活动应该如何与任务相关联。</p>
+
+<p>该<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#lmode">启动模式</a>属性指定一个活动应该如何启动进任务中的指令。有四种不同的启动模式你可以给<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#lmode">启动模式</a>属性赋值：</p>
+
+<p>&ldquo;standard&rdquo;(默认模式)</p>
+
+<p>默认。从任务里启动活动和发送意图给活动系统会创建这个活动的一个新实例。活动会被多次实例化，每个实例可以属于不同的任务，并且一个任务可以有多个实例。</p>
+
+<p>&ldquo;singleTop&rdquo;</p>
+
+<p>如果活动的一个实例已经在当前任务的栈顶存在，系统会通过调用它的 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法给那个实例发送一个意图，而不是创建活动的一个新实例。该活动可以被实例化多次，每个实例可以属于不同的任务，一个任务可以有多个实例(但仅当回退栈顶部的活动不是一个该活动已存在的实例)。</p>
+
+<p>例如，假设一个任务的回退栈由根活动 A 和活动 B，活动 C 和顶部的活动 D 组成（栈的顺序为 A-B-C-D; D在顶部）。一个意图过来请求 D 类型的活动。如果 D 有默认的 &ldquo;standard&rdquo; 启动模式，一个类的新实例会被启动并且栈变为 A-B-C-D-D。然而，D 的启动模式为 &ldquo;singleTop"，D 已存在的实例通过 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法接收到这个意图，因为它是在栈的顶部，栈仍然保持为 A-B-C-D。然后，如果一个意图过来请求B类型的活动，则 B 的新实例被添加进堆栈中，即使它的启动模式为 "singleTop"。</p>
+
+<blockquote><p>注意：当活动的一个新实例被创建时，用户可以按返回按钮来返回到前一个活动。但是当一个活动已存在的实例处理一个新意图时，用户不可以按返回键来返回到新意图通过 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法到达之前时的状态。</p></blockquote>
+
+<p>&ldquo;singleTask&rdquo;</p>
+
+<p>系统会创建一个新任务并从新任务的根部实例化活动。然而，如果该活动的一个实例已经存在于一个单独的任务，系统会通过调用它的 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法发送意图给这个已存在的实例，而不是创建一个新的实例。一个活动在同一时间只能存在一个实例。</p>
+
+<blockquote><p>注意：虽然活动在一个新的任务里启动，但是后退按钮仍然使用户返回到前一个活动。</p></blockquote>
+
+<p>&ldquo;singleInstance&rdquo;</p>
+
+<p>和 &ldquo;singleTask&rdquo; 一样，除了系统不会在任务里启动任何其它的活动来持有这个实例。该活动始终是任务里单一且唯一的成员；任何被这个活动启动的活动在一个单独的任务里打开。</p>
+
+<p>再举一个例子，Android 浏览器程序声明网页浏览器的活动应该总是在它自己的任务里打开——通过在 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 元素里指定为 <strong>singleTask</strong> 启动模式。这意味着你的应用程序发出一个意图来打开 Android 浏览器时，它的活动不是放置在跟你的应用程序一样的任务里。相反，无论是启动浏览器的新的一个任务还是浏览器有一个运行在后台的任务，那个任务都会被拿到前台来处理这个新的意图。</p>
+
+<p>不管活动是否启动一个新的任务还是启动了它的同一个任务，后退键总是把用户带到前一个活动。然而，如果你启动了一个为 <strong>singleTask</strong> 启动模式的活动，然后如果那个活动在一个后台任务里存在一个实例，那么那整个任务会被带到前台来。此时，回退栈包含所有被拿到前台的活动放在栈顶上。图 4 说明了这种类型的方案。</p>
+
+<p><img src="/images/2014-5-19/4.png" title="图 4" ></p>
+
+<p>图4："singleTask"启动模式的活动是如何被添加进回退栈的一个展示。如果活动已经是带有自己回退栈的后台任务的一部分，那么这整个回退栈也会被拿到前台来放在当前任务的顶部。</p>
+
+<p>有关在清单文件中使用启动模式的更多信息，请参阅 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 元素的文档，其中有更多关于启动模式属性和可被接受的值的讨论。</p>
+
+<blockquote><p>注：你为活动设置的启动模式属性的行为会被启动活动的带有标志的意图所覆盖，如在下一节讨论的。</p></blockquote>
+
+<h4>使用意图标志</h4>
+
+<p>当启动一个活动，你可以通过传递给 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a> 一个带有标志的意图来改变活动和它的任务默认的关联行为。你可以使用的改变默认行为的标志如下：</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a></p>
+
+<p>启动一个新的任务。如果一个任务已经运行你正在启动的活动，那个任务会被带到前台来并带着上次的状态恢复并且这个活动在 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法里接收新的意图。</p>
+
+<p>这将产生和 &ldquo;singleTask&rdquo; 启动模式值一样的行为，这在上一节已经讨论过了。</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_SINGLE_TOP">FLAG_ACTIVITY_SINGLE_TOP</a></p>
+
+<p>如果要启动的活动是当前活动(在回退栈的顶部)，那么现有的实例接收 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法的调用，而不是创建这个活动的一个新的实例。</p>
+
+<p>这将产生和 &ldquo;singleTop&rdquo; 启动模式值一样的行为，这在上一节已经讨论过了。</p>
+
+<p><a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP">FLAG_ACTIVITY_CLEAR_TOP</a></p>
+
+<p>如果要启动的活动已经在当前任务中运行，然后所有它顶部的其它活动都被销毁并且这个意图被传送来通过 <a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a> 方法来恢复这个活动的实例，而不是创建这个活动的一个新的实例。</p>
+
+<p>在<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#lmode">启动模式</a>属性里没有一个值可以产生这样的的行为。</p>
+
+<p><strong>FLAG_ACTIVITY_CLEAR_TOP</strong> 是最经常与 <strong>FLAG_ACTIVITY_NEW_TASK</strong> 一起使用的。当一起使用时，这些标志是定位另一个任务中存在的活动和把它放在它所能响应的Intent的某个位置的一种方式。</p>
+
+<blockquote><p>注意：如果指定的活动启动模式为 &ldquo;standard"，它也能从堆栈中删除并且一个新的实例在它的地方启动来处理传人的意图。这是因为对于一个新的意图当启动模式为 "standard&rdquo; 时一个新的实例总是被创建。</p></blockquote>
+
+<h3>处理亲和性</h3>
+
+<p>亲和性指的是一个活动更倾向于属于哪个任务。默认情况下，同一应用程序的所有活动彼此具有亲和性。所以，默认的，同一应用程序的所有活动倾向于在同一个任务中。然而，你可以改变一个活动的默认亲和性。不同应用程序的活动可以共享一个亲和性，或者同一应用程序中的活动可以被赋值为不同任务的亲和性。</p>
+
+<p>你可以用 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 元素的 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#aff">taskAffinity</a> 属性改变任何已给的活动的亲和性。</p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#aff">taskAffinity</a> 属性需要一个字符串值，它必须唯一的，来自 <manifest> 元素中声明的默认包名，因为系统使用那个名字来识别应用程序的默认任务亲和性。</p>
+
+<p>亲和性在两种情况下发挥作用：</p>
+
+<ul>
+<li>当一个启动活动的意图包括 <a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a> 标志时。</li>
+</ul>
+
+
+<p>一个新的活动，默认情况下，启动进入这个叫做 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a> 活动的任务。它被推送到和调用者一样的回退栈里。然而，如果传给 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a> 的意图包含 <a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a> 标志的话，系统会寻找一个不同的任务来容纳这个新活动。通常情况下，它是一个新的任务，但并不是必须如此。如果有一个已经存在的任务和这个新活动是一样的亲和性，这个活动会启动进入那个任务。如果不一样的话，它开始一个新的任务。</p>
+
+<p>如果这个标志导致一个活动开始一个新的任务并且用户按了 <em>Home</em> 按钮离开了它，那么必须有某种方式使用户导航返回到这个任务。一些实体(例如通知管理器)总是在一个外部的任务里启动活动，从来不是作为它们自己的一部分，所以它们总是把 FLAG_ACTIVITY_NEW_TASK 标志放进它们传给 <a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>的意图里。如果你有一个通过一个也许使用了这个标志的外部实体可以调用的活动，注意用户有一种独立的方式来返回那个启动的任务，例如用启动图标(任务的根活动有一个 <a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LAUNCHER">CATEGORY_LAUNCHER</a> 的意图过滤器；见下面的 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#Starting">Starting a task</a> 章节)。</p>
+
+<ul>
+<li>当一个活动它的 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#reparent">allowTaskReparenting</a> 属性被设置为 &ldquo;true"时。</li>
+</ul>
+
+
+<p>这种情况下，当这个活动有一个亲和性的任务进入前台时，该活动可以从它启动的任务移动到这个任务。</p>
+
+<p>例如，假设一个报告选定城市天气情况的活动被定义为一个旅游应用程序的一部分。它在同样的应用程序里和其它的活动有同样的亲和性(默认的应用亲和性)并且允许它用这个属性重新设置。当你其中的一个活动启动天气报告活动时，它最初和你的活动属于同样的任务。然而，当旅游应用程序的任务进入到前台时，天气报告的活动被重新分配到那个任务并在它里面展示。</p>
+
+<blockquote><p>提示：如果一个apk文件从用户的角度包含不止一个“应用程序”，你可能想使用 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#aff">taskAffinity</a> 属性给和每个“应用程序”相关的活动赋予不同的亲和性。</p></blockquote>
+
+<h3>清除回退栈</h3>
+
+<p>如果用户离开一个任务很长一段时间后，系统将清除这个任务里的所有活动除了根活动。当用户再一次返回这个任务，仅仅只有根活动被恢复。系统这样的行为是因为在一段很长的时间后，用户很可能放弃了他们之前正在做的事情并且返回到这个任务开始一些事情。</p>
+
+<p>有一些活动属性你可以使用来修改这种行为：</p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#always">alwaysRetainTaskState</a></p>
+
+<p>如果这个属性在任务的根活动里设置为 &ldquo;true"，刚刚描述的默认行为就不会发生。任务会保留在它堆栈里的所有活动即使在一段很长的时间之后。</p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#clear">clearTaskOnLaunch</a></p>
+
+<p>如果这个属性在任务的根活动里设置为 &ldquo;true"，堆栈会清除到只剩根活动无论何时用户离开任务和返回任务。换句话说，它正好与 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#always">alwaysRetainTaskState</a> 相反。用户总是返回到任务的初始状态，即使是离开任务一会儿。</p>
+
+<p><a href="http://developer.android.com/guide/topics/manifest/activity-element.html#finish">finishOnTaskLaunch</a></p>
+
+<p>这个属性有点像 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#clear">clearTaskOnLaunch</a>，但是它运行在一个单一的活动之上，而不是整个任务。它还可能导致任何活动离开，包括根活动。当它被设置为 &ldquo;true"时，这个活动只会保留当前会话的部分。如果这个用户离开了然后又回到任务，它不再存在。</p>
+
+<h3>启动任务</h3>
+
+<p>你可以设置一个活动作为一个任务的切入点通过给它一个用 &ldquo;android.intent.action.MAIN&rdquo; 作为指定动作和 &ldquo;android.intent.category.LAUNCHER&rdquo; 作为指定类别的意图过滤器。例如：</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;activity</span> <span class="err">...</span> <span class="nt">&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>intent-filter ... <span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>action android:name=&quot;android.intent.action.MAIN&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>category android:name=&quot;android.intent.category.LAUNCHER&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/intent-filter<span class="ni">&amp;gt;</span>
+</span><span class='line'>...
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;/activity&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>这样的一个意图过滤器会导致活动的图标和标签在应用程序启动器上展示，给用户一种方式来启动活动和在任务任意时间创建启动之后返回任务。</p>
+
+<p>第二个能力是很重要的：用户必须能够离开一个任务然后通过使用这个活动启动器回来。由于这个原因，这两个启动模式总是在启动任务时标记活动，"singleTask" 和 &ldquo;"singleInstance&rdquo; 应该仅当被用于具有 <a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_MAIN">ACTION_MAIN</a> 和 <a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LAUNCHER">CATEGORY_LAUNCHER</a> 过滤器的活动。设想一下，例如，如果不要过滤器会发生什么：一个意图启动了一个 &ldquo;singleTask&rdquo; 的活动，初始化了一个新的任务，并且用户花了一些时间在该任务上工作。然后用户按了 <em>Home</em> 按钮。这个任务被传送到后台并且不可见。现在用户没有办法返回到这个任务了，因为它没有在应用启动器里展示。</p>
+
+<p>对于这些你不想用户能够返回到一个活动的情况，将 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity></a> 元素的 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html#finish">finishOnTaskLaunch</a> 设置为 &ldquo;true&rdquo;(参见 <a href="http://developer.android.com/guide/components/tasks-and-back-stack.html#Clearing">Clearing the stack</a>)。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Performance Tips]]></title>
@@ -313,7 +570,7 @@
 
 <p>本文档提出的每项主张都有一个基准支持。这些基准的资源都可以在<a href="code.google.com%20%22dalvik%22%20project">code.google.com &ldquo;dalvik&rdquo; project</a>中找到。</p>
 
-<p>这些基准是用Caliper microbenchmarking Java框架建立的。很难得到正确的微基准，所以Caliper用自己的方式为你做这项很艰难的事情，甚至检测出一些你没有测量你认为你在测量的东西。(因为，比如说虚拟机已经成功地优化了所有的代码了。)我们强烈建议你有Caliper来运行你自己的微基准。</p>
+<p>这些基准是用Caliper microbenchmarking Java框架建立的。得到正确的微基准是很难的，所以Caliper用自己的方式为你做这项很艰难的事情，甚至检测出一些你没有测量你认为你在测量的东西。(因为，比如说虚拟机已经成功地优化了所有的代码了。)我们强烈建议你用Caliper来运行你自己的微基准。</p>
 
 <p>你可能发现<code>TraceView</code>对分析很有用，但要认识到它目前是禁用JIT的，可能导致由JIT优化代码来的时间被弄错这一点很重要。尤其重要的是在通过TraceView数据的建议作出改变之后要确保产生的代码在没有TraceView时运行确实运行的更快。</p>
 
