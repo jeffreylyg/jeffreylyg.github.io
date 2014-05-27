@@ -10,14 +10,21 @@ categories: [Android]
 {% img /images/2014-4-22/1.png %}
 
 ##安装过程
-1. 首先安装VirtualBox，所以它能在Windows，Mac和Linux上都可以运行，这也是它比本地模拟器更快的原因。    
+1.首先安装VirtualBox，所以它能在Windows，Mac和Linux上都可以运行，这也是它比本地模拟器更快的原因。    
 
-2. 从官网下载后安装然后注册一个账号即可，点击运行如下图所示：{% img /images/2014-4-22/2.png %} 怎么样，界面是不是很漂亮？
+2.从官网下载后安装然后注册一个账号即可，点击运行如下图所示：
 
-3. 用之前注册好的账号登录后选择一款手机型号或者自定义也行，例如我选择了我最喜欢的Nexus 5，然后就从服务器上去下载相应的虚拟机了，如下图所示：{% img /images/2014-4-22/3.png %}
+{% img /images/2014-4-22/2.png %} 
 
-<br />
-IntelliJ、Android Studio和Eclipse（不过Eclipse应该大多数人都不用了吧，和IDEA系列比简直太弱了啊）都有相应的插件，在官网上都可以下到。IDEA系列安装插件如下图所示，在Setting的Plugins里点击Install 	plugin from disk找到所在位置安装就行。{% img /images/2014-4-22/4.png %}
+怎么样，界面是不是很漂亮？
+
+3.用之前注册好的账号登录后选择一款手机型号或者自定义也行，例如我选择了我最喜欢的Nexus 5，然后就从服务器上去下载相应的虚拟机了，如下图所示：
+
+{% img /images/2014-4-22/3.png %}
+
+IntelliJ、Android Studio和Eclipse（不过Eclipse应该大多数人都不用了吧，和IDEA系列比简直太弱了啊）都有相应的插件，在官网上都可以下到。IDEA系列安装插件如下图所示，在Setting的Plugins里点击Install 	plugin from disk找到所在位置安装就行。
+
+{% img /images/2014-4-22/4.png %}
 
 ##遇到的问题
 这是网上很多配置教程没有的，也是我自己亲自遇到的问题。编译项目后在**Genymotion**模拟器上运行时发现报`INSTALL_FAILED_CPU_ABI_INCOMPATIBLE`的错误，这是因为**Genymotion**只支持x86结构，不支持ARM，如果你的项目是必须运行在ARM上的话，那就必须安装[Genymotion-ARM-Translation_v1.1.zip](http://s5.filetrip.net/dl.php?fn=L3AvMjgzMjIvMTk1MDQyLUdlbnltb3Rpb24tQVJNLVRyYW5zbGF0aW9uX3YxLjEuemlw&dn=R2VueW1vdGlvbi1BUk0tVHJhbnNsYXRpb25fdjEuMS56aXA=&fs=OTM5MDI1MA==)，点击链接下载后在**Genymotion**模拟器的HomeScreen上把这个zip包拖拽上去就安装好了。
