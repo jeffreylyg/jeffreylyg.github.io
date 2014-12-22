@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-12-23T01:06:51+08:00</updated>
+  <updated>2014-12-23T01:15:08+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -518,7 +518,7 @@ I/AndroidTouchSystem(26236): ChildView has received ACTION_MOVE in onTouchEvent
 I/AndroidTouchSystem(26236): ParentView has received ACTION_UP in onInterceptTouchEvent
 I/AndroidTouchSystem(26236): ChildView has received ACTION_UP in onTouchEvent</p></blockquote>
 
-<p>同学们看完代码和Log后应该对<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>的调用时序应该就会很明白了吧。</p>
+<p>同学们看完代码和Log后对<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>的调用时序应该就会很明白了吧。</p>
 ]]></content>
   </entry>
   
