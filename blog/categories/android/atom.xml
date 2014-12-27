@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Stay foolish, stay hungry.]]></title>
   <link href="http://jeffreylyg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://jeffreylyg.github.io/"/>
-  <updated>2014-12-23T01:15:08+08:00</updated>
+  <updated>2014-12-28T00:45:18+08:00</updated>
   <id>http://jeffreylyg.github.io/</id>
   <author>
     <name><![CDATA[Jeffrey Lee]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[IntelliJ IDEA导入Android源码工程(AOSP)]]></title>
+    <link href="http://jeffreylyg.github.io/blog/2014/12/27/intellij-ideadao-ru-androidyuan-ma-gong-cheng-aosp/"/>
+    <updated>2014-12-27T21:16:15+08:00</updated>
+    <id>http://jeffreylyg.github.io/blog/2014/12/27/intellij-ideadao-ru-androidyuan-ma-gong-cheng-aosp</id>
+    <content type="html"><![CDATA[<p>这篇Blog主要介绍一下在IntelliJ IDEA中如何导入整个Android源码工程。</p>
+
+<p>首先，确保整个Android源码被编译成功了（至于不知道如何下载Android源码和编译源码的同学请自行Google），在out目录中所对应的机型目录下成功生成了<strong>system.img</strong>这个文件。接下来就是如何导入的详细步骤了：</p>
+
+<blockquote><p>请注意：接下来的命令都是在你所下载的Android源码的根目录中执行。</p></blockquote>
+
+<!--more-->
+
+
+<h3>1. 执行如下命令生成idegen.jar文件</h3>
+
+<p><code>
+mmm developent/tools/idegen/ -B
+</code></p>
+
+<h3>2. 按如下命令执行idegen.sh脚本</h3>
+
+<p><code>
+development/tools/idegen/idegen.sh
+</code>
+这时如果是导入Android 5.0的源码的话会碰到如下图的问题：</p>
+
+<p><img src="/images/2014-12-27/1.png"></p>
+
+<p>解决办法很简单，先将那个目录随便改个后缀名，等导入完成后改回来就好了。这条命令执行完成后就在Android源码的根目录中生成了android.iml, android.ipr和android.iws三个文件。</p>
+
+<h3>3. 用IntelliJ IDEA直接打开android.ipr这个文件</h3>
+
+<p>这时IntelliJ IDEA就会扫描整个目录并去建立索引了，这个过程是相当耗时间的，大概得一个小时左右，根据电脑的配置决定，所以为了能最大程度地缩短这个时间，在这之前我们有一些准备工作要做。</p>
+
+<h4>增加IntelliJ IDEA所占的内存</h4>
+
+<p>如果是Linux，就在"IDEA_HOME/bin/idea.vmoptions64"（如果是mac系统就在"IntelliJ IDEA.app/Contents/Info.plist"）中改变"&ldquo;-Xms -Xmx"的值，如果是32位系统就修改vmoptions。我的电脑是16G的内存，所以我给Xmx开了1G。</p>
+
+<h3>4.一些后续步骤</h3>
+
+<p>当建立完索引后打开project structure就会在modules中看到如下图所示的很多jar文件的依赖：</p>
+
+<p><img src="/images/2014-12-27/2.png"></p>
+
+<p>这时将除了Module Source 和 1.6 (No libraries)的jar文件都移除了，然后选Module SDK为一个空的java library（官方的说法），其实选对应版本的Android SDK也是没有任何问题的。</p>
+
+<p>IntelliJ IDEA导入Android源码的步骤就这么多，接下来就可以在IntelliJ IDEA中自由自在地阅读源码或进行源码的开发了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[onInterceptTouchEvent和onTouchEvent的调用时序]]></title>
@@ -1357,44 +1408,6 @@ I/AndroidTouchSystem(26236): ChildView has received ACTION_UP in onTouchEvent</p
 <li><a href="http://developer.android.com/tools/debugging/systrace.html">Analysing Display and Performance with Systrace</a></li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Genymotion, the fastest Android emulator for app testing and presentation]]></title>
-    <link href="http://jeffreylyg.github.io/blog/2014/04/22/genymotion/"/>
-    <updated>2014-04-22T23:33:44+08:00</updated>
-    <id>http://jeffreylyg.github.io/blog/2014/04/22/genymotion</id>
-    <content type="html"><![CDATA[<p>各位做Android开发的Developers可能早已受够了Google自带的模拟器，它确实又慢又卡，所以大多数Developers都是用真机调试，然而真机自然也有它的不方便之处，那就是你需要一台测试真机，这个一般公司都能给你提供，最主要的是它还是比较慢，做过iOS的人都喜欢用模拟器比真机多一点，除非一些在模拟器上调试不了的功能，因为iOS的模拟器比真机还快，还不需要安装一系列必要的Profile，之前做iOS的时候无不感叹iOS模拟器的方便，想着Android什么时候也能有这样一款模拟器就好了。今天偶然发现了这款叫<a href="http://www.genymotion.com/"><strong>Genymotion</strong></a>的模拟器，支持跨平台，亲测后只能用一句话来形容：“它真的太棒了”！启动速度和运行速度和自带的完全不在一个数量级上，是自带的几十倍，堪比iOS模拟器。强烈推荐做Android开发的同学们以后都用这款模拟器。也许发现的有点晚，但总比一直没有发现好吧，简单Google了一下发现网上配置教程也比较多，其实也不需要什么教程，按照官网上的做就行了，还是比较容易上手的，下面简单的来说一下安装过程和安装好后遇到的一些问题吧。</p>
-
-<!--more-->
-
-
-<p><img src="/images/2014-4-22/1.png"></p>
-
-<h2>安装过程</h2>
-
-<p>1.首先安装VirtualBox，所以它能在Windows，Mac和Linux上都可以运行，这也是它比本地模拟器更快的原因。</p>
-
-<p>2.从官网下载后安装然后注册一个账号即可，点击运行如下图所示：</p>
-
-<p><img src="/images/2014-4-22/2.png"></p>
-
-<p>怎么样，界面是不是很漂亮？</p>
-
-<p>3.用之前注册好的账号登录后选择一款手机型号或者自定义也行，例如我选择了我最喜欢的Nexus 5，然后就从服务器上去下载相应的虚拟机了，如下图所示：</p>
-
-<p><img src="/images/2014-4-22/3.png"></p>
-
-<p>IntelliJ、Android Studio和Eclipse（不过Eclipse应该大多数人都不用了吧，和IDEA系列比简直太弱了啊）都有相应的插件，在官网上都可以下到。IDEA系列安装插件如下图所示，在Setting的Plugins里点击Install  plugin from disk找到所在位置安装就行。</p>
-
-<p><img src="/images/2014-4-22/4.png"></p>
-
-<h2>遇到的问题</h2>
-
-<p>这是网上很多配置教程没有的，也是我自己亲自遇到的问题。编译项目后在<strong>Genymotion</strong>模拟器上运行时发现报<code>INSTALL_FAILED_CPU_ABI_INCOMPATIBLE</code>的错误，这是因为<strong>Genymotion</strong>只支持x86结构，不支持ARM，如果你的项目是必须运行在ARM上的话，那就必须安装<a href="http://s5.filetrip.net/dl.php?fn=L3AvMjgzMjIvMTk1MDQyLUdlbnltb3Rpb24tQVJNLVRyYW5zbGF0aW9uX3YxLjEuemlw&amp;dn=R2VueW1vdGlvbi1BUk0tVHJhbnNsYXRpb25fdjEuMS56aXA=&amp;fs=OTM5MDI1MA==">Genymotion-ARM-Translation_v1.1.zip</a>，点击链接下载后在<strong>Genymotion</strong>模拟器的HomeScreen上把这个zip包拖拽上去就安装好了。</p>
-
-<p>怎么样，看完了整个过程是不是觉得很简单？那还等什么呢，赶紧安装吧，体验<strong>Genymotion</strong>带来的快速和便捷吧。</p>
 ]]></content>
   </entry>
   

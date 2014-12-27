@@ -5,11 +5,11 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Categories - Stay foolish, stay hungry.</title>
+	<title>IntelliJ IDEA导入Android源码工程(AOSP) - Stay foolish, stay hungry.</title>
 	<meta name="author" content="Jeffrey Lee">
 
 	
-	<meta name="description" content=" Life of code [ 1 ] Android [ 6 ] ">
+	<meta name="description" content="IntelliJ IDEA导入Android源码工程(AOSP) 这篇Blog主要介绍一下在IntelliJ IDEA中如何导入整个Android源码工程。 首先，确保整个Android源码被编译成功了（至于不知道如何下载Android源码和编译源码的同学请自行Google）， &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="Stay foolish, stay hungry." type="application/atom+xml">
 	
-	<link rel="canonical" href="http://jeffreylyg.github.io/blog/categories/">
+	<link rel="canonical" href="http://jeffreylyg.github.io/blog/2014/12/27/intellij-ideadao-ru-androidyuan-ma-gong-cheng-aosp/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -116,20 +116,66 @@
 				
 			
 			<div class="mid-col-container">
-				<div id="content" class="inner"><article class="page">
-    
-    <h1 class="title">Categories</h1>
-    
-    <div class="entry-content"><ul>
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">IntelliJ IDEA导入Android源码工程(AOSP)</h1>
+	<div class="entry-content" itemprop="articleBody"><p>这篇Blog主要介绍一下在IntelliJ IDEA中如何导入整个Android源码工程。</p>
 
-    <li><a href="/blog/categories/Life Of Code/">Life of code</a> [ 1 ]</li>
+<p>首先，确保整个Android源码被编译成功了（至于不知道如何下载Android源码和编译源码的同学请自行Google），在out目录中所对应的机型目录下成功生成了<strong>system.img</strong>这个文件。接下来就是如何导入的详细步骤了：</p>
 
-    <li><a href="/blog/categories/Android/">Android</a> [ 6 ]</li>
+<blockquote><p>请注意：接下来的命令都是在你所下载的Android源码的根目录中执行。</p></blockquote>
 
-</ul>
+<!--more-->
 
+
+<h3>1. 执行如下命令生成idegen.jar文件</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mmm developent/tools/idegen/ -B</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>2. 按如下命令执行idegen.sh脚本</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>development/tools/idegen/idegen.sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这时如果是导入Android 5.0的源码的话会碰到如下图的问题：</p>
+
+<p><img src="/images/2014-12-27/1.png"></p>
+
+<p>解决办法很简单，先将那个目录随便改个后缀名，等导入完成后改回来就好了。这条命令执行完成后就在Android源码的根目录中生成了android.iml, android.ipr和android.iws三个文件。</p>
+
+<h3>3. 用IntelliJ IDEA直接打开android.ipr这个文件</h3>
+
+<p>这时IntelliJ IDEA就会扫描整个目录并去建立索引了，这个过程是相当耗时间的，大概得一个小时左右，根据电脑的配置决定，所以为了能最大程度地缩短这个时间，在这之前我们有一些准备工作要做。</p>
+
+<h4>增加IntelliJ IDEA所占的内存</h4>
+
+<p>如果是Linux，就在&#8221;IDEA_HOME/bin/idea.vmoptions64&#8221;（如果是mac系统就在&#8221;IntelliJ IDEA.app/Contents/Info.plist&#8221;）中改变&#8221;&ldquo;-Xms -Xmx&#8221;的值，如果是32位系统就修改vmoptions。我的电脑是16G的内存，所以我给Xmx开了1G。</p>
+
+<h3>4.一些后续步骤</h3>
+
+<p>当建立完索引后打开project structure就会在modules中看到如下图所示的很多jar文件的依赖：</p>
+
+<p><img src="/images/2014-12-27/2.png"></p>
+
+<p>这时将除了Module Source 和 1.6 (No libraries)的jar文件都移除了，然后选Module SDK为一个空的java library（官方的说法），其实选对应版本的Android SDK也是没有任何问题的。</p>
+
+<p>IntelliJ IDEA导入Android源码的步骤就这么多，接下来就可以在IntelliJ IDEA中自由自在地阅读源码或进行源码的开发了。</p>
 </div>
+
 </article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
 
 
 <section id="comment">
@@ -137,7 +183,6 @@
     <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 </section>
-
 </div>
 			</div>
 			<footer id="footer" class="inner"><p>
@@ -154,8 +199,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://jeffreylyg.github.io/blog/categories/index.html';
-        var disqus_url = 'http://jeffreylyg.github.io/blog/categories/index.html';
+        var disqus_identifier = 'http://jeffreylyg.github.io/blog/2014/12/27/intellij-ideadao-ru-androidyuan-ma-gong-cheng-aosp/';
+        var disqus_url = 'http://jeffreylyg.github.io/blog/2014/12/27/intellij-ideadao-ru-androidyuan-ma-gong-cheng-aosp/';
         var disqus_script = 'embed.js';
       
     (function () {
